@@ -1,0 +1,13 @@
+README.md
+setup.py
+gym_ws/__init__.py
+gym_ws.egg-info/PKG-INFO
+gym_ws.egg-info/SOURCES.txt
+gym_ws.egg-info/dependency_links.txt
+gym_ws.egg-info/requires.txt
+gym_ws.egg-info/top_level.txt
+gym_ws/envs/__init__.py
+gym_ws/envs/gazebo_env.py
+gym_ws/envs/real_env.py
+gym_ws/envs/copter/__init__.py
+gym_ws/envs/copter/copter_hover.py
