@@ -11,3 +11,8 @@ register(
     entry_point='gym_ws.envs.copter:CopterEnv',
 )
 
+register(
+    id='new_Hover-v0',
+    entry_point='gym_ws.envs.copter:new_CopterEnv',
+)
+
