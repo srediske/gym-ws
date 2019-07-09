@@ -13,7 +13,6 @@ from gym_ws.envs import gazebo_env
 from gym.utils import seeding
 
 from mavros_msgs.msg import OverrideRCIn
-#from mavros_msgs import OverrideRCIn
 from sensor_msgs.msg import LaserScan, NavSatFix
 from std_msgs.msg import Float64
 from gazebo_msgs.msg import ModelStates
@@ -54,12 +53,12 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
              #self.pub.publish(msg)
 
             # Set GUIDED mode
-            # rospy.wait_for_service('mavros/set_mode')
-            rospy.wait_for_service('mavros_msgs/SetMode')
+            rospy.wait_for_service('mavros/set_mode')
+            #rospy.wait_for_service('mavros_msgs/SetMode')
             try:
                 self.mode_proxy(0, 'GUIDED')
             except (rospy.ServiceException) as e:
-                print ("mavros/SetMode service call failed: %s" % e)
+                print ("mavros/set_mode service call failed: %s" % e)
 
             # Wait 2 seconds
             time.sleep(2)
@@ -69,7 +68,7 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             try:
                 self.arm_proxy(True)
             except (rospy.ServiceException) as e:
-                print ("mavros/SetMode service call failed: %s" % e)
+                print ("mavros/set_mode service call failed: %s" % e)
 
             # Takeoff
             rospy.wait_for_service('mavros/cmd/takeoff')
@@ -111,11 +110,11 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
                 print("Takeoff failed, retrying...")
 
         # Set ALT_HOLD mode
-        rospy.wait_for_service('mavros/SetMode')
+        rospy.wait_for_service('mavros/set_mode')
         try:
             self.mode_proxy(0, 'ALT_HOLD')
         except (rospy.ServiceException) as e:
-            print ("mavros/SetMode service call failed: %s" % e)
+            print ("mavros/set_mode service call failed: %s" % e)
 
     def _launch_apm(self):
         sim_vehicle_py = str(
@@ -142,7 +141,7 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
         RED, BOLD, ENDC)
         msg = "\n%s\n" % (LINE)
         msg += "%sLoad Copter parameters in MavProxy console (sim_vehicle.py):%s\n\n" % (BOLD, ENDC)
-        msg += "MAV> param load %s\n\n" % (str(os.environ["COPTER_PARAM_PATH"]))  # find path in erlecopter_setup.bash
+        msg += "MAV> param load %s\n\n" % (str(os.environ["~/gym-ws/gym_ws/envs/params/new_3DR_Iris+_AC34.param"]))
         msg += "%sThen, press <Enter> to launch Gazebo...%s\n\n%s" % (BOLD, ENDC, LINE)
         self._pause(msg)
 
@@ -173,7 +172,7 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
         self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_world', Empty) # Resets the model's poses
         #self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty) # Resets the entire simulation including the time
 
-        self.mode_proxy = rospy.ServiceProxy('mavros/SetMode', SetMode)
+        self.mode_proxy = rospy.ServiceProxy('mavros/set_mode', SetMode)
 
         self.arm_proxy = rospy.ServiceProxy('mavros/cmd/arming', CommandBool)
 

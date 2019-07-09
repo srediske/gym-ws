@@ -11,8 +11,8 @@
     <arg name="Y" default="0.0"/> <!-- [rad], negative clockwise -->
 
     <!-- vehicle model and world -->
-    <arg name="vehicle" default="iris-zed_with_ardupilot"/>
-    <arg name="world" default="worlds/iris-zed_arducopter_runway.world"/>
+    <arg name="vehicle" default="iris_with_ardupilot"/>
+    <arg name="world" default="worlds/iris_arducopter_runway.world"/>
     <!--arg name="sdf" default="/usr/share/gazebo-9/models/$(arg vehicle)/model.sdf"/-->
 
     <!-- gazebo configs -->
