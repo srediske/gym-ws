@@ -9,6 +9,8 @@ import pandas
 import qlearn
 import rospy
 
+from gym import wrappers
+
 #pdb.set_trace();
 def render():
     render_skip = 0 #Skip first X episodes.
@@ -29,7 +31,7 @@ def to_bin(value, bins):
 if __name__ == '__main__':
 
     # Create the Gym environment
-    env = gym.make('Hover-v0')
+    env = gym.make('new_Hover-v0')
     rospy.loginfo ("Gym environment done") # added 23.06.19 SR
     
     # Set the logging system

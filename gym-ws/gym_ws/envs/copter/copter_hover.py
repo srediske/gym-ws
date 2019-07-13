@@ -181,7 +181,7 @@ class CopterEnv(gazebo_env.GazeboEnv):
 
         countdown = 10
         while countdown > 0:
-            print ("Taking off in in %ds" % countdown)
+            print ("Taking off in %ds" % countdown)
             countdown -= 1
             time.sleep(1)
 

@@ -11,3 +11,4 @@ gym_ws/envs/gazebo_env.py
 gym_ws/envs/real_env.py
 gym_ws/envs/copter/__init__.py
 gym_ws/envs/copter/copter_hover.py
+gym_ws/envs/copter/new_copter_hover.py

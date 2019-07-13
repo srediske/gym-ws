@@ -39,6 +39,10 @@
         <!--arg name="recording" default="$(arg recording)"/-->
     </include>
 
+    <!-- MAVROS launch file for ardupilot -->
+    <include file="~/gym-ws/gym-ws/gym_ws/envs/launch/apm.launch">
+    </include>
+
     <!--node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
       <param name="publish_frequency" type="double" value="30.0" />
     </node-->
