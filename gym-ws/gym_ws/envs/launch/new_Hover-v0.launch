@@ -40,7 +40,8 @@
     </include>
 
     <!-- MAVROS launch file for ardupilot -->
-    <include file="~/gym-ws/gym-ws/gym_ws/envs/launch/apm.launch">
+    <!--include file="~/gym-ws/gym-ws/gym_ws/envs/launch/apm.launch"-->
+    <include file="$(find mavros)/launch/apm.launch">
     </include>
 
     <!--node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">

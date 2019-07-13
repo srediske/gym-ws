@@ -39,6 +39,27 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             except:
                 pass
 
+	print("Set mode")
+	rospy.wait_for_service('/mavros/set_mode')
+	try:
+		modeService = rospy.ServiceProxy('/mavros/set_mode', SetMode)
+		modeResponse = modeService(0, 'GUIDED_NOGPS')
+		rospy.loginfo("\nMode Response: " + str(modeResponse))
+		print("Mode set")
+	except rospy.ServiceException as e:
+		print("Service call failed: %s" %e)
+
+	time.sleep(20)
+	print("Set arming")
+	rospy.wait_for_service('/mavros/cmd/arming')
+	try:
+		armService = rospy.ServiceProxy('/mavros/cmd/arming', CommandBool)
+		armResponse = armService(True)
+		rospy.loginfo(armResponse)
+		print("Armed")
+	except rospy.ServiceException as e:
+		print("Service call failed: %s" %e)
+
         takeoff_successful = False
         while not takeoff_successful:
             print("Taking off...")
@@ -58,24 +79,6 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
              #msg.channels[7] = 0
              #self.pub.publish(msg)
 
-            # Set GUIDED mode
-            # rospy.wait_for_service('mavros/set_mode')
-            rospy.wait_for_service('mavros_msgs/SetMode')
-            try:
-                self.mode_proxy(0, 'GUIDED')
-            except (rospy.ServiceException) as e:
-                print ("mavros/SetMode service call failed: %s" % e)
-
-            # Wait 2 seconds
-            time.sleep(2)
-
-            # Arm throttle
-            rospy.wait_for_service('mavros/cmd/arming')
-            try:
-                self.arm_proxy(True)
-            except (rospy.ServiceException) as e:
-                print ("mavros/SetMode service call failed: %s" % e)
-
             # Takeoff
             rospy.wait_for_service('mavros/cmd/takeoff')
             try:
@@ -93,30 +96,30 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
                 except:
                     pass
 
-            erlecopter_index = 0
-            print("Finding erle-copter index")
-            for name in alt_msg.name:
-                if name == "erlecopter":
-            #iris-zed_demo_index = 0
-            #print("Finding copter index")
+            #erlecopter_index = 0
+            #print("Finding drone index")
             #for name in alt_msg.name:
-            #    if name == "iris-zed_demo":
+            #    if name == "erlecopter":
+            iris_zed_index = 0
+            print("Finding drone index")
+            for name in alt_msg.name:
+                if name == "iris_demo":
 
                     break
                 else:
-                    erlecopter_index += 1
-            erlecopter_alt = alt_msg.pose[erlecopter_index].position.z * 2
-            if erlecopter_alt > (alt - err):
-      #              iris-zed_demo_index += 1
-      #      iris-zed_demo_alt = alt_msg.pose[iris-zed_demo_index].position.z * 2
-      #      if iris-zed_demo_alt > (alt - err):
+           #         erlecopter_index += 1
+           # erlecopter_alt = alt_msg.pose[erlecopter_index].position.z * 2
+           # if erlecopter_alt > (alt - err):
+                    iris_zed_index += 1
+            iris_zed_alt = alt_msg.pose[iris_zed_index].position.z * 2
+            if iris_zed_alt > (alt - err):
                 takeoff_successful = True
                 print("Takeoff successful")
             else:
                 print("Takeoff failed, retrying...")
 
         # Set ALT_HOLD mode
-        rospy.wait_for_service('mavros/SetMode')
+        rospy.wait_for_service('mavros/set_mode')
         try:
             self.mode_proxy(0, 'ALT_HOLD')
         except (rospy.ServiceException) as e:
