@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #import pdb; pdb.set_trace();
 import gym
+from gym import wrappers
 import gym_ws
 import time
 import numpy
@@ -8,8 +9,7 @@ import time
 import pandas
 import qlearn
 import rospy
-
-from gym import wrappers
+#import liveplot
 
 #pdb.set_trace();
 def render():
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # Set the logging system
     outdir = '/tmp/gazebo_gym_experiments'
     env = gym.wrappers.Monitor(env, outdir, force=True)
-    #plotter = LivePlot(outdir)
+    #plotter = liveplot.LivePlot(outdir)
 
     last_time_steps = numpy.ndarray(0)
     max_number_of_steps = 1000
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     initial_epsilon = qlearn.epsilon
 
-    epsilon_discount = 0.9988
+    epsilon_discount = 0.999
 
     start_time = time.time()
     total_episodes = 10000
@@ -98,7 +98,7 @@ if __name__ == '__main__':
                 last_time_steps = numpy.append(last_time_steps, [int(i + 1)])
                 break 
 
-        #if x%100==0:
+        #if x % 100 == 0:
         #    plotter.plot()
 
         m, s = divmod(int(time.time() - start_time), 60)

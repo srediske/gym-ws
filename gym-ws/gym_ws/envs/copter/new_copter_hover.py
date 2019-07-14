@@ -1,10 +1,9 @@
-# import pdb # python debugger
+import pdb # python debugger
 import gym
 import rospy
 import roslaunch
 import time
 import numpy as np
-
 import os
 import subprocess
 import math
@@ -43,13 +42,13 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
 	rospy.wait_for_service('/mavros/set_mode')
 	try:
 		modeService = rospy.ServiceProxy('/mavros/set_mode', SetMode)
-		modeResponse = modeService(0, 'GUIDED_NOGPS')
+		modeResponse = modeService(0, 'STABILIZE') # GUIDED_NOGPS ; STABILIZE
 		rospy.loginfo("\nMode Response: " + str(modeResponse))
 		print("Mode set")
 	except rospy.ServiceException as e:
 		print("Service call failed: %s" %e)
 
-	time.sleep(20)
+	time.sleep(60)
 	print("Set arming")
 	rospy.wait_for_service('/mavros/cmd/arming')
 	try:
@@ -59,11 +58,12 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
 		print("Armed")
 	except rospy.ServiceException as e:
 		print("Service call failed: %s" %e)
-
+	pdb.set_trace()
         takeoff_successful = False
         while not takeoff_successful:
             print("Taking off...")
             alt = altitude
+	    #alt = 2
             err = alt * 0.1  # 10% error
 
              #pub = rospy.Publisher('/mavros/rc/override', OverrideRCIn, queue_size=10)
@@ -82,7 +82,11 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             # Takeoff
             rospy.wait_for_service('mavros/cmd/takeoff')
             try:
-                self.takeoff_proxy(0, 0, 0, 0, alt)  # 1m altitude
+                self.takeoff_proxy(0, 0, 0, 0, alt)  # (min_pitch, yaw, latitude, longitude, altitude)
+	        #takeoffService = rospy.ServiceProxy('mavros/cmd/takeoff', CommandTOL)
+		#takeoffResponse = takeoffService(True)
+		#rospy.loginfo(takeoffResponse)
+		#print("Takeoff successful clown")
             except (rospy.ServiceException) as e:
                 print ("mavros/cmd/takeoff service call failed: %s" % e)
 
@@ -100,7 +104,7 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             #print("Finding drone index")
             #for name in alt_msg.name:
             #    if name == "erlecopter":
-            iris_zed_index = 0
+            drone_index = 0
             print("Finding drone index")
             for name in alt_msg.name:
                 if name == "iris_demo":
@@ -110,9 +114,9 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
            #         erlecopter_index += 1
            # erlecopter_alt = alt_msg.pose[erlecopter_index].position.z * 2
            # if erlecopter_alt > (alt - err):
-                    iris_zed_index += 1
-            iris_zed_alt = alt_msg.pose[iris_zed_index].position.z * 2
-            if iris_zed_alt > (alt - err):
+                    drone_index += 1
+            drone_alt = alt_msg.pose[drone_index].position.z * 2
+            if drone_alt > (alt - err):
                 takeoff_successful = True
                 print("Takeoff successful")
             else:
