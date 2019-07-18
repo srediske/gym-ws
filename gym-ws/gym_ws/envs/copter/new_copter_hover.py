@@ -1,7 +1,9 @@
-import pdb # python debugger
+#!/usr/bin/env python
+
+#import pdb # python debugger
 import gym
 import rospy
-import roslaunch
+#import roslaunch
 import time
 import numpy as np
 import os
@@ -12,22 +14,29 @@ from gym import utils, spaces
 from gym_ws.envs import gazebo_env
 from gym.utils import seeding
 
+from pymavlink import mavutil
+from pymavlink import mavextra
+from common import AutoTest
+from common import NotAchievedException, AutoTestTimeoutException, PreconditionFailedException
+
 from mavros_msgs.msg import OverrideRCIn
-from sensor_msgs.msg import LaserScan, NavSatFix
+from sensor_msgs.msg import NavSatFix
 from std_msgs.msg import Float64
 from gazebo_msgs.msg import ModelStates
 
 from mavros_msgs.srv import CommandBool, CommandTOL, SetMode
 from std_srvs.srv import Empty
 
-
 # pdb.set_trace()
-class new_CopterEnv(gazebo_env.GazeboEnv):
+#class setup():
+
+class new_CopterEnv(gazebo_env.GazeboEnv, AutoTest):
 
     def _launch_apm(self):
         sim_vehicle_py = str(
             os.environ["ARDUPILOT_PATH"]) + "/Tools/autotest/sim_vehicle.py"
         subprocess.Popen(["xterm","-e", sim_vehicle_py,"-j4","-v","ArduCopter","-f","gazebo-iris","--console"])
+	#subprocess.Popen([sim_vehicle_py,"-j4","-v","ArduCopter","-f","gazebo-iris","--console"])
 
     def _takeoff(self, altitude):
         print("Waiting for mavros...")
@@ -37,18 +46,20 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
                 data = rospy.wait_for_message('/mavros/global_position/rel_alt', Float64, timeout=5)
             except:
                 pass
-
+	
+	# Set mode to Stabilize
 	print("Set mode")
 	rospy.wait_for_service('/mavros/set_mode')
 	try:
 		modeService = rospy.ServiceProxy('/mavros/set_mode', SetMode)
-		modeResponse = modeService(0, 'STABILIZE') # GUIDED_NOGPS ; STABILIZE
+		modeResponse = modeService(0, 'GUIDED') # GUIDED_NOGPS ; STABILIZE
 		rospy.loginfo("\nMode Response: " + str(modeResponse))
 		print("Mode set")
 	except rospy.ServiceException as e:
 		print("Service call failed: %s" %e)
 
-	time.sleep(60)
+	# Arm the drone
+	time.sleep(50)
 	print("Set arming")
 	rospy.wait_for_service('/mavros/cmd/arming')
 	try:
@@ -58,20 +69,29 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
 		print("Armed")
 	except rospy.ServiceException as e:
 		print("Service call failed: %s" %e)
-	pdb.set_trace()
+	#pdb.set_trace()
         takeoff_successful = False
         while not takeoff_successful:
             print("Taking off...")
             alt = altitude
-	    #alt = 2
             err = alt * 0.1  # 10% error
+            #self.set_rc(3, 1600)
+
+	    #rate = rospy.Rate(10) # 10Hz
+	    #mavros.command.setup_services();
+	    #msg = mavros.msg.OverrideRCIn()
+	    #msg.channels[3] = 1600
+	    #pub = rospy.Publisher('/mavros/rc/override', mavros.msg.OverrideRCIn, queue_size=10)
+	    #self.set_rc(3, 1600)
+	    #print("rc 3 1600")
+	    #pub.publish(msg)
+	    #rate.sleep()
 
              #pub = rospy.Publisher('/mavros/rc/override', OverrideRCIn, queue_size=10)
-
              #msg = OverrideRCIn()
              #msg.channels[0] = 0 # Roll
              #msg.channels[1] = 0 # Pitch
-             #msg.channels[2] = 1500 # Throttle
+             #msg.channels[2] = 1510 # Throttle
              #msg.channels[3] = 0    # Yaw
              #msg.channels[4] = 0
              #msg.channels[5] = 0
@@ -82,11 +102,11 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             # Takeoff
             rospy.wait_for_service('mavros/cmd/takeoff')
             try:
-                self.takeoff_proxy(0, 0, 0, 0, alt)  # (min_pitch, yaw, latitude, longitude, altitude)
+                self.takeoff_proxy(0, 0, 0, 0, 30) # alt sub 30  # (min_pitch, yaw, latitude, longitude, altitude)
 	        #takeoffService = rospy.ServiceProxy('mavros/cmd/takeoff', CommandTOL)
 		#takeoffResponse = takeoffService(True)
 		#rospy.loginfo(takeoffResponse)
-		#print("Takeoff successful clown")
+            #print("Takeoff successful")
             except (rospy.ServiceException) as e:
                 print ("mavros/cmd/takeoff service call failed: %s" % e)
 
@@ -122,12 +142,16 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             else:
                 print("Takeoff failed, retrying...")
 
-        # Set ALT_HOLD mode
-        rospy.wait_for_service('mavros/set_mode')
-        try:
-            self.mode_proxy(0, 'ALT_HOLD')
-        except (rospy.ServiceException) as e:
-            print ("mavros/SetMode service call failed: %s" % e)
+		# Set mode to ALT_HOLD
+		#print("Set mode")
+		#rospy.wait_for_service('/mavros/set_mode')
+		#try:
+		#	modeService = rospy.ServiceProxy('/mavros/set_mode', SetMode)
+		#	modeResponse = modeService(0, 'ALT_HOLD')  #
+		#	rospy.loginfo("\nMode Response: " + str(modeResponse))
+		#	print("Mode set")
+		#except rospy.ServiceException as e:
+		#	print("Service call failed: %s" % e)
 
     def _pause(self, msg):
         programPause = raw_input(str(msg)) # changed 03.07.19 SR and added lines below
@@ -140,6 +164,8 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
     def __init__(self):
 
         self._launch_apm()
+        self.mavproxy = None
+        self.mav = None
 
         RED = '\033[91m'
         BOLD = '\033[1m'
@@ -157,31 +183,20 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
         self.action_space = spaces.Discrete(4)  # F, L, R, B
         # self.observation_space = spaces.Box(low=0, high=20) #laser values
         self.reward_range = (-np.inf, np.inf)
-
         self.initial_latitude = None
         self.initial_longitude = None
-
         self.current_latitude = None
         self.current_longitude = None
-
         self.diff_latitude = None
         self.diff_longitude = None
-
         self.max_distance = 1.6
-
         self.pub = rospy.Publisher('/mavros/rc/override', OverrideRCIn, queue_size=10)
-
         self.unpause = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
-
         self.pause = rospy.ServiceProxy('/gazebo/pause_physics', Empty)
-
         self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_world', Empty) # Resets the model's poses
         #self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty) # Resets the entire simulation including the time
-
         self.mode_proxy = rospy.ServiceProxy('mavros/SetMode', SetMode)
-
         self.arm_proxy = rospy.ServiceProxy('mavros/cmd/arming', CommandBool)
-
         self.takeoff_proxy = rospy.ServiceProxy('mavros/cmd/takeoff', CommandTOL)
 
         countdown = 10
@@ -202,6 +217,12 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
         return discretized_ranges, done
 
     def step(self, action):
+        rospy.wait_for_service('/gazebo/unpause_physics')
+        try:
+            self.unpause()
+        except (rospy.ServiceException) as e:
+            print ("/gazebo/unpause_physics service call failed")
+
         msg = OverrideRCIn()
 
         if action == 0:  # FORWARD
@@ -245,9 +266,9 @@ class new_CopterEnv(gazebo_env.GazeboEnv):
             os.system("kill -9 " + str(pid))
 
     def _relaunch_apm(self):
-        pids = subprocess.check_output(["pidof", "ArduCopter.elf"]).split()
-        for pid in pids:
-            os.system("kill -9 " + str(pid))
+        #pids = subprocess.check_output(["pidof", "ArduCopter"]).split()
+        #for pid in pids:
+        #    os.system("kill -9 " + str(pid))
 
         grep_cmd = "ps -ef | grep ardupilot"
         result = subprocess.check_output([grep_cmd], shell=True).split()

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82dec94d-11d1-4bab-9e17-9844484fbb55" name="Default Changelist" comment="" />
+    <list default="true" id="82dec94d-11d1-4bab-9e17-9844484fbb55" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/new_copter_hover.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/new_copter_hover.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/src/eeprom.bin" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/src/eeprom.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/src/logs/LASTLOG.TXT" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/src/logs/LASTLOG.TXT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/src/mav.parm" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/src/mav.parm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/src/mav.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/src/mav.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/src/mav.tlog.raw" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/src/mav.tlog.raw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,16 +25,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/new_copter_hover.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="359">
+              <caret line="192" column="86" lean-forward="true" selection-start-line="192" selection-start-column="86" selection-end-line="192" selection-end-column="86" />
               <folding>
-                <element signature="e#6692#6760#0" />
-                <element signature="e#6869#7884#0" />
-                <element signature="e#7932#8065#0" />
-                <element signature="e#8104#8642#0" />
-                <element signature="e#8739#9836#0" />
-                <element signature="e#9877#9945#0" />
-                <element signature="e#9976#10625#0" />
+                <element signature="e#53#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gym-ws/gym_ws/envs/gazebo_env.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="536">
+              <caret line="134" column="45" selection-start-line="134" selection-start-column="45" selection-end-line="134" selection-end-column="45" />
+              <folding>
+                <element signature="e#5502#5604#0" />
               </folding>
             </state>
           </provider>
@@ -34,23 +49,68 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+            <state relative-caret-position="1455">
+              <caret line="105" column="68" selection-start-line="105" selection-start-column="68" selection-end-line="105" selection-end-column="68" />
+              <folding>
+                <element signature="e#52#62#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gym-gazebo/gym_gazebo/envs/turtlebot/gazebo_circuit2_turtlebot_lidar.py">
+        <entry file="file://$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="4980">
+              <caret line="348" column="44" selection-start-line="348" selection-start-column="44" selection-end-line="348" selection-end-column="44" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#374#960#0" />
-                <element signature="e#1024#1638#0" />
-                <element signature="e#1680#1748#0" />
-                <element signature="e#1787#3207#0" />
-                <element signature="e#3239#4387#0" />
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../mavlink/pymavlink/mavutil.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6570">
+              <caret line="443" column="16" selection-start-line="443" selection-start-column="8" selection-end-line="443" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ardupilot/Tools/autotest/arducopter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1905">
+              <caret line="163" column="35" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="35" />
+              <folding>
+                <element signature="e#879#898#0" />
+                <element signature="e#938#971#0" />
+                <element signature="e#1016#1042#0" />
+                <element signature="e#1084#1227#0" />
+                <element signature="e#1268#1276#0" />
+                <element signature="e#1317#1336#0" />
+                <element signature="e#1375#1385#0" />
+                <element signature="e#1421#1432#0" />
+                <element signature="e#1463#1778#0" />
+                <element signature="e#1813#1824#0" />
+                <element signature="e#1874#1917#0" />
+                <element signature="e#1959#2005#0" />
+                <element signature="e#2058#2099#0" />
+                <element signature="e#124940#130693#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ardupilot/Tools/autotest/common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6915">
+              <caret line="477" column="12" selection-start-line="477" selection-start-column="8" selection-end-line="477" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,6 +127,23 @@
       <find>_pause</find>
       <find>erlecopter</find>
       <find>param</find>
+      <find>wait_ready_to</find>
+      <find>get_sim_time_ca</find>
+      <find>autotesttimeout</find>
+      <find>set_rc</find>
+      <find>drain_mav</find>
+      <find>self.mav</find>
+      <find>def mav</find>
+      <find>recv_mat</find>
+      <find>recv</find>
+      <find>recv_match</find>
+      <find>def set_rc</find>
+      <find>def drain_mav</find>
+      <find>get_</find>
+      <find>_seed</find>
+      <find>discreti</find>
+      <find>discretize</find>
+      <find>roslaunch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -77,13 +154,16 @@
       <list>
         <option value="$PROJECT_DIR$/src/copter_hover_qlearn.py" />
         <option value="$PROJECT_DIR$/gym_ws/envs/copter/copter_hover.py" />
+        <option value="$PROJECT_DIR$/gym-ws/gym_ws/envs/gazebo_env.py" />
+        <option value="$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/common.py" />
+        <option value="$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py" />
         <option value="$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/new_copter_hover.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="50" />
-    <option name="y" value="114" />
+    <option name="x" value="1987" />
+    <option name="y" value="55" />
     <option name="width" value="1657" />
     <option name="height" value="922" />
   </component>
@@ -93,6 +173,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -109,12 +190,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/gym-ws/src" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py" />
     <property name="settings.editor.selected.configurable" value="IntelliLang.Configuration" />
   </component>
   <component name="RunDashboard">
@@ -155,6 +236,9 @@
       <module name="gym-ws" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/../venv2/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gym-ws/src" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -190,12 +274,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="new_copter_hover_qlearn" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gym-ws" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gym-ws/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.copter" />
       <item itemvalue="Python.copter_hover_qlearn" />
+      <item itemvalue="Python.new_copter_hover_qlearn" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.new_copter_hover_qlearn" />
         <item itemvalue="Python.copter_hover_qlearn" />
       </list>
     </recent_temporary>
@@ -223,26 +330,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
-    <editor active="true" />
+    <frame x="1987" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984375" visible="true" weight="0.24670532" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984375" visible="true" weight="0.25792348" />
       <window_info id="Structure" order="1" sideWeight="0.5015625" side_tool="true" weight="0.24723247" />
       <window_info id="Favorites" order="2" sideWeight="0.5015625" side_tool="true" weight="0.24723247" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4980631" visible="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4939378" weight="0.32984293" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49762782" weight="0.39979014" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49710068" weight="0.39979014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49762782" weight="0.3790576" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4960464" weight="0.32879582" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.12967844" side_tool="true" visible="true" weight="0.3809024" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.8703216" visible="true" weight="0.3809024" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49973643" weight="0.32948583" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4945355" weight="0.32829374" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5019369" side_tool="true" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.86874014" weight="0.3809024" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24958494" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -250,12 +356,29 @@
     <entry file="file://$PROJECT_DIR$/gym_ws/envs/gazebo_env.py" />
     <entry file="file://$PROJECT_DIR$/gym_ws/envs/real_env.py" />
     <entry file="file://$PROJECT_DIR$/gym_ws/envs/copter/copter_hover.py" />
-    <entry file="file://$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        <state relative-caret-position="180">
+          <caret line="1146" column="79" lean-forward="true" selection-start-line="1146" selection-start-column="79" selection-end-line="1146" selection-end-column="79" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../.PyCharmCE2019.1/system/python_stubs/609447295/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="79" column="6" selection-start-line="79" selection-start-column="6" selection-end-line="79" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../.PyCharmCE2019.1/system/python_stubs/609447295/sys.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="456" selection-start-line="456" selection-end-line="456" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv2/lib/python2.7/abc.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../gym-gazebo/gym_gazebo/envs/turtlebot/gazebo_circuit2_turtlebot_lidar.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -271,25 +394,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+    <entry file="file:///usr/lib/python2.7/subprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="1146" column="79" lean-forward="true" selection-start-line="1146" selection-start-column="79" selection-end-line="1146" selection-end-column="79" />
+        <state relative-caret-position="197">
+          <caret line="193" column="4" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../.PyCharmCE2019.1/system/python_stubs/609447295/posix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="821" column="4" selection-start-line="821" selection-start-column="4" selection-end-line="821" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym-ws/src/new_copter_hover_qlearn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1455">
+          <caret line="105" column="68" selection-start-line="105" selection-start-column="68" selection-end-line="105" selection-end-column="68" />
+          <folding>
+            <element signature="e#52#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4980">
+          <caret line="348" column="44" selection-start-line="348" selection-start-column="44" selection-end-line="348" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../mavlink/pymavlink/mavutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6570">
+          <caret line="443" column="16" selection-start-line="443" selection-start-column="8" selection-end-line="443" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ardupilot/Tools/autotest/arducopter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1905">
+          <caret line="163" column="35" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="35" />
+          <folding>
+            <element signature="e#879#898#0" />
+            <element signature="e#938#971#0" />
+            <element signature="e#1016#1042#0" />
+            <element signature="e#1084#1227#0" />
+            <element signature="e#1268#1276#0" />
+            <element signature="e#1317#1336#0" />
+            <element signature="e#1375#1385#0" />
+            <element signature="e#1421#1432#0" />
+            <element signature="e#1463#1778#0" />
+            <element signature="e#1813#1824#0" />
+            <element signature="e#1874#1917#0" />
+            <element signature="e#1959#2005#0" />
+            <element signature="e#2058#2099#0" />
+            <element signature="e#124940#130693#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ardupilot/Tools/autotest/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6915">
+          <caret line="477" column="12" selection-start-line="477" selection-start-column="8" selection-end-line="477" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym-ws/gym_ws/envs/gazebo_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="134" column="45" selection-start-line="134" selection-start-column="45" selection-end-line="134" selection-end-column="45" />
+          <folding>
+            <element signature="e#5502#5604#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gym-ws/gym_ws/envs/copter/new_copter_hover.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="359">
+          <caret line="192" column="86" lean-forward="true" selection-start-line="192" selection-start-column="86" selection-end-line="192" selection-end-column="86" />
           <folding>
-            <element signature="e#6692#6760#0" />
-            <element signature="e#6869#7884#0" />
-            <element signature="e#7932#8065#0" />
-            <element signature="e#8104#8642#0" />
-            <element signature="e#8739#9836#0" />
-            <element signature="e#9877#9945#0" />
-            <element signature="e#9976#10625#0" />
+            <element signature="e#53#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
