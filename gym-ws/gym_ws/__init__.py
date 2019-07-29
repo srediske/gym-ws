@@ -16,3 +16,7 @@ register(
     entry_point='gym_ws.envs.copter:new_CopterEnv',
 )
 
+register(
+    id='dronekit_Hover-v0',
+    entry_point='gym_ws.envs.copter:dronekit_CopterEnv',
+)

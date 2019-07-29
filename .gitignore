@@ -1,0 +1,29 @@
+.idea
+*.pyc
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+
+# Gazebo/SITL project files
+mav.tlog
+mav.tlog.raw
+mav.parm
+eeprom.bin
+terrain/
+logs/
+
+
+real_env.py
+3DR_Iris+_AC34.param
+
+# for other examples
+pysim/
+arducopter.py
+commands.py
+common.py
+ordinary.py
+new_copter_hover.py
+copter_hover.py
+dronekit_copter_hover_control.py
+dronekit_copter_hover_backup.py
+

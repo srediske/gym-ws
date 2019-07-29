@@ -11,9 +11,8 @@
     <arg name="Y" default="0.0"/> <!-- [rad], negative clockwise -->
 
     <!-- vehicle model and world -->
-    <arg name="vehicle" default="iris_with_ardupilot"/>
-    <arg name="world" default="worlds/iris_arducopter_runway.world"/>
-    <!--arg name="sdf" default="/usr/share/gazebo-9/models/$(arg vehicle)/model.sdf"/-->
+    <arg name="vehicle" default="iris_with_ardupilot"/> <!--included in the world-file-->
+    <arg name="world" default="worlds/iris_arducopter_target.world"/>
 
     <!-- gazebo configs -->
     <arg name="use_sim_time" default="true"/>
@@ -44,8 +43,8 @@
     <include file="$(find mavros)/launch/apm.launch">
     </include>
 
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <!--node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
       <param name="publish_frequency" type="double" value="30.0" />
-    </node>
+    </node-->
 
 </launch>
