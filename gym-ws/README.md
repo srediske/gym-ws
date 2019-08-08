@@ -30,10 +30,9 @@ Main developer wiki: <http://dev.ardupilot.org>
 
 Install some ROS-dependencies:
 
-`
-cd gym-ws/gym-ws
-bash ros-dependencies.sh
-`
+```
+./ros-dependencies.sh
+```
 
 If this does not work try:
 
