@@ -32,7 +32,7 @@ Install some ROS-dependencies:
 
 `
 cd gym-ws/gym-ws
- ./ros-dependencies.sh
+bash ros-dependencies.sh
 `
 
 If this does not work try:
