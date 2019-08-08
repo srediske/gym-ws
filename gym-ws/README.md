@@ -29,34 +29,41 @@ Main developer wiki: <http://dev.ardupilot.org>
 # Installation
 
 Install some ROS-dependencies:
-```cd gym-ws/gym-ws
-./ros-dependencies.sh```
+
+`
+cd gym-ws/gym-ws
+./ros-dependencies.sh
+`
 
 If this does not work try:
-```chmod u+x ros-dependencies```
+
+```
+chmod u+x ros-dependencies
+```
+
 to make it executable and try it again.
 
 In the root directory of the repository:
 
-```bash
+```
 pip install -e .
 ```
 
 if you have permission issues, you can try:
 
-```bash
+```
 pip install -e . --user
 ```
 
 or
 
-```bash
+```
 sudo pip install -e .
 ```
 
 # Usage
 
-```bash
+```
 cd gym-ws/gym-ws/src
 python dronekit_hover_qlearn.py
 ```
@@ -65,6 +72,6 @@ python dronekit_hover_qlearn.py
 
 To end a simulation you should stop the python code with ctrl+c in your terminal. Sometimes `gzserver`, `gzclient` and `rosmaster` still working in the background. Make sure you end them before continuing, therefore you can create an alias in your `.bashrc` to kill these processes. After ending a simulation typ into a new tab oder terminal "kig" to use it.
 
-```bash
+```
 echo "alias kig='killall -9 rosmaster gzserver gzclient rosout nodelet'" >> ~/.bashrc
 ```
