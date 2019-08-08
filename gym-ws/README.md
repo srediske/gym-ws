@@ -20,7 +20,7 @@ Community Site: <http://ardupilot.org>
 
 Main developer wiki: <http://dev.ardupilot.org>
 
--Dronekit Python : [Install instructions](https://dronekit-python.readthedocs.io/en/latest/guide/quick_start.html#installation), [code](https://github.com/dronekit/dronekit-python), [wiki](https://dronekit-python.readthedocs.io/en/latest/guide/index.html)
+- Dronekit Python : [Install instructions](https://dronekit-python.readthedocs.io/en/latest/guide/quick_start.html#installation), [code](https://github.com/dronekit/dronekit-python), [wiki](https://dronekit-python.readthedocs.io/en/latest/guide/index.html)
 
 - Theano : [Install instructions](http://deeplearning.net/software/theano/install_ubuntu.html)
 
@@ -31,6 +31,7 @@ Main developer wiki: <http://dev.ardupilot.org>
 Install some ROS-dependencies:
 
 ```
+cd gym-ws/gym-ws
 ./ros-dependencies.sh
 ```
 
@@ -48,7 +49,7 @@ In the root directory of the repository:
 pip install -e .
 ```
 
-if you have permission issues, you can try:
+If you have permission issues, you can try:
 
 ```
 pip install -e . --user
