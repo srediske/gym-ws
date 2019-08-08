@@ -12,10 +12,6 @@ eeprom.bin
 terrain/
 logs/
 
-
-real_env.py
-3DR_Iris+_AC34.param
-
 # for other examples
 pysim/
 arducopter.py
@@ -26,4 +22,9 @@ new_copter_hover.py
 copter_hover.py
 dronekit_copter_hover_control.py
 dronekit_copter_hover_backup.py
+copter_hover_qlearn.py
+new_copter_hover_qlearn.py
+dronekit_Hover-v0.launch
 
+# Shell-file for package installation - not done
+#ros-dependencies.sh
