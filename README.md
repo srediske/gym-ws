@@ -49,16 +49,10 @@ In the root directory of the repository:
 pip install -e .
 ```
 
-If you have permission issues, you can try:
+If you have permission issues, try:
 
 ```
 pip install -e . --user
-```
-
-or
-
-```
-sudo pip install -e .
 ```
 
 # Usage
