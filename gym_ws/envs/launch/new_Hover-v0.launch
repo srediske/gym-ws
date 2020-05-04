@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- ArduPilot SITL environment launch script -->
+    <!-- launches Gazebo environment, and spawns vehicle -->
+    <!-- Initial pose for the drone -->
+    <arg name="x" default="0.0"/> <!-- [m], positive to the North -->
+    <arg name="y" default="0.0"/> <!-- [m], negative to the East -->
+    <arg name="z" default="0.0"/> <!-- [m], positive Up -->
+    <arg name="R" default="0.0"/> <!-- [rad] -->
+    <arg name="P" default="0.0"/> <!-- [rad] -->
+    <arg name="Y" default="0.0"/> <!-- [rad], negative clockwise -->
+
+    <!-- vehicle model and world -->
+    <arg name="vehicle" default="iris_with_ardupilot"/> <!--included in the world-file-->
+    <!--arg name="world" default="worlds/iris_arducopter_target.world"/-->
+    <arg name="world" default="worlds/iris_arducopter_runway.world"/>
+
+    <!-- gazebo configs -->
+    <arg name="use_sim_time" default="true"/>
+    <arg name="enable_logging" default="true"/>
+    <arg name="enable_ground_truth" default="true"/>
+    <arg name="log_file" default="copter"/>
+    <arg name="gui" default="true"/>
+    <arg name="debug" default="false"/>
+    <arg name="verbose" default="true"/>
+    <arg name="paused" default="false"/>
+    <arg name="respawn_gazebo" default="false"/>
+    <!--arg name="recording" default="true"/>
+    <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/-->
+
+    <!-- Gazebo sim -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="gui" default="$(arg gui)"/>
+        <arg name="world_name" default="$(arg world)"/>
+        <arg name="debug" default="$(arg debug)"/>
+        <arg name="verbose" default="$(arg verbose)"/>
+        <arg name="paused" default="$(arg paused)"/>
+        <arg name="respawn_gazebo" default="$(arg respawn_gazebo)"/>
+        <!--arg name="recording" default="$(arg recording)"/-->
+    </include>
+
+    <!-- MAVROS launch file for ardupilot -->
+    <!--include file="~/ZAL/gym-ws/gym-ws/gym_ws/envs/launch/apm.launch"-->
+    <include file="$(find mavros)/launch/apm.launch">
+    </include>
+
+    <!--node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="publish_frequency" type="double" value="30.0" />
+    </node-->
+
+</launch>
