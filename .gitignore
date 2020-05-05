@@ -7,7 +7,7 @@
 # Gazebo/SITL project files
 mav.tlog
 mav.tlog.raw
-mav.parm
+*.parm
 eeprom.bin
 terrain/
 logs/
