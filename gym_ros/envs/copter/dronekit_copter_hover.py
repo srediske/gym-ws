@@ -9,7 +9,7 @@ import math
 import argparse
 
 from gym import spaces
-from gym_ws.envs import gazebo_env
+from gym_ros.envs import gazebo_env
 from gym.utils import seeding
 from dronekit import VehicleMode, connect, LocationGlobalRelative
 from sensor_msgs.msg import NavSatFix
@@ -26,13 +26,14 @@ class dronekit_CopterEnv(gazebo_env.GazeboEnv):
     def __init__(self):
         self._launch_apm()  # Launch SITL
         gazebo_env.GazeboEnv.__init__(self, "new_Hover-v0.launch")  # Launch gazebo with the given launchfile name
-        time.sleep(25)  # Wait 25s to load Gazebo and connect SITL before continue
+        time.sleep(25)  # Wait 30s to load Gazebo and connect SITL before continue
         self.vehicle = self._connect()  # Connect Dronekit with SITL
         time.sleep(2)
-        self.action_space = spaces.Discrete(4)  # Set the number of action spaces, in this example 4: Forward, Left, Right, Backwards
+        # Set the number of action spaces, in this example 4: Forward, Left, Right, Backwards
+        self.action_space = spaces.Discrete(4)
         self.reward_range = (-np.inf, np.inf)  # Reward range: -infinite to infinite
-        self.initial_latitude = None  # Basically the latitude from the origin point or the startpoint of the Drone
-        self.initial_longitude = None  # Basically the longitude from the origin point or the startpoint of the Drone
+        self.initial_latitude = None  # Basically the latitude from the origin point or the start point of the Drone
+        self.initial_longitude = None  # Basically the longitude from the origin point or the start point of the Drone
         self.current_latitude = None  # The measured latitude
         self.current_longitude = None  # The measured longitude
         self.diff_latitude = None  # The latitude difference from Drone to origin
@@ -41,8 +42,9 @@ class dronekit_CopterEnv(gazebo_env.GazeboEnv):
         self.unpause = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
         self.pause = rospy.ServiceProxy('/gazebo/pause_physics', Empty)
         self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_world', Empty)  # Resets the model's poses
-        # self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty) # Resets the entire simulation including the time,
-        # which causes a connection loss between SITL & Gazebo,therefore its much faster to go with 'reset_world'
+        # self.reset_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty)
+        # Resets the entire simulation including the time,
+        # which causes a connection loss between SITL & Gazebo, therefore its much faster to go with 'reset_world'
         self._takeoff(2)  # First takeoff, not really necessary and does not contribute to the RL
         self._seed()
 
@@ -76,15 +78,15 @@ class dronekit_CopterEnv(gazebo_env.GazeboEnv):
                           "--console"])  # add "--console" for Copter GUI
         # subprocess.Popen([sim_vehicle_py,"-j4","-v","ArduCopter","-f","gazebo-iris","--console"])
 
-        RED = '\033[91m'
-        BOLD = '\033[1m'
-        ENDC = '\033[0m'
-        LINE = "%s%s##############################################################################%s" % (
-        RED, BOLD, ENDC)
-        msg = "\n%s\n" % (LINE)
-        msg += "%sLoad Copter parameters in MavProxy console (sim_vehicle.py):%s\n\n" % (BOLD, ENDC)
-        msg += "MAV> param load %s\n\n" % (str("~/gym-ws/gym-ws/gym_ws/envs/params/IRIS.param"))
-        msg += "%sThen, press <Enter> to launch Gazebo...%s\n\n%s" % (BOLD, ENDC, LINE)
+        red = '\033[91m'
+        bold = '\033[1m'
+        endc = '\033[0m'
+        line = "%s%s##############################################################################%s" % (
+            red, bold, endc)
+        msg = "\n%s\n" % line
+        msg += "%sLoad Copter parameters in MavProxy console (sim_vehicle.py):%s\n\n" % (bold, endc)
+        msg += "MAV> param load %s\n\n" % (str("~/gym-ws/gym-ws/gym_ros/envs/params/IRIS.param"))
+        msg += "%sThen, press <Enter> to launch Gazebo...%s\n\n%s" % (bold, endc, line)
         raw_input(str(msg))
 
     def send_attitude_target(self, roll_angle=0.0, pitch_angle=0.0, yaw_angle=None, yaw_rate=0.0, use_yaw_rate=False,

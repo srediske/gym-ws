@@ -1,6 +1,5 @@
 import gym
 import rospy
-#import roslaunch
 import sys
 import os
 import signal
@@ -11,6 +10,7 @@ from gym.utils import seeding
 from std_srvs.srv import Empty
 import random
 from rosgraph_msgs.msg import Clock
+
 
 class GazeboEnv(gym.Env):
     """Superclass for all Gazebo environments.
@@ -43,7 +43,6 @@ class GazeboEnv(gym.Env):
         # self._roscore = subprocess.Popen([sys.executable, os.path.join(ros_path, b"roscore"), "-p", self.port])
         # time.sleep(1)
         # print ("Roscore launched!")
-
 
         if launchfile.startswith("/"):
             fullpath = launchfile
@@ -114,7 +113,7 @@ class GazeboEnv(gym.Env):
         proccount = tmp.count('gzclient')
         if proccount < 1:
             subprocess.Popen("gzclient")
-            self.gzclient_pid = int(subprocess.check_output(["pidof","-s","gzclient"]))
+            self.gzclient_pid = int(subprocess.check_output(["pidof", "-s", "gzclient"]))
         else:
             self.gzclient_pid = 0
 
@@ -136,7 +135,7 @@ class GazeboEnv(gym.Env):
         if roscore_count > 0:
             os.system("killall -9 roscore")
 
-        if (gzclient_count or gzserver_count or roscore_count or rosmaster_count >0):
+        if gzclient_count or gzserver_count or roscore_count or rosmaster_count > 0:
             os.wait()
 
     def _configure(self):
@@ -145,6 +144,7 @@ class GazeboEnv(gym.Env):
         # From OpenAI API: Provides runtime configuration to the enviroment
         # Maybe set the Real Time Factor?
         pass
+
     def _seed(self):
 
         # TODO

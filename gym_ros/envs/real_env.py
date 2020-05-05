@@ -8,14 +8,14 @@ from os import path
 from std_srvs.srv import Empty
 import random
 
+
 class RealEnv(gym.Env):
     """Superclass for all Gazebo environments.
     """
     metadata = {'render.modes': ['human']}
 
     def __init__(self):
-
-        self.port = "11311"#str(random_number) #os.environ["ROS_PORT_SIM"]
+        self.port = "11311"  # str(random_number) #os.environ["ROS_PORT_SIM"]
 
         # #start roscore
         # subprocess.Popen(["roscore", "-p", self.port])
@@ -29,18 +29,17 @@ class RealEnv(gym.Env):
         os.environ["ROS_MASTER_URI"] = self.ros_master_uri
 
     def step(self, action):
-
         # Implement this method in every subclass
         # Perform a step in gazebo. E.g. move the drone
         raise NotImplementedError
 
     def reset(self):
-
         # Implemented in subclass
         raise NotImplementedError
 
     def render(self, mode=None,  close=False):
         pass
+
     def _render(self, mode=None,  close=False):
         self._close()
 
@@ -54,13 +53,12 @@ class RealEnv(gym.Env):
         pass
 
     def _configure(self):
-
         # TODO
         # From OpenAI API: Provides runtime configuration to the enviroment
         # Maybe set the Real Time Factor?
         pass
-    def _seed(self):
 
+    def _seed(self):
         # TODO
         # From OpenAI API: Sets the seed for this env's random number generator(s)
         pass

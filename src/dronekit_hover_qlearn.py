@@ -93,7 +93,7 @@ if __name__ == '__main__':
                                      to_bin(longitude, longitude_bins)])
 
             qlearn.learn(state, action, reward, nextState)
-            env.flush(force=True)  # test
+            env._flush(force=True)  # test
 
             if not done:
                 state = nextState
