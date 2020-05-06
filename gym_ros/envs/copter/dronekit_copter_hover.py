@@ -9,7 +9,7 @@ import math
 import argparse
 
 from gym import spaces
-from gym_ws.envs import gazebo_env
+from gym_ros.envs import gazebo_env
 from gym.utils import seeding
 from dronekit import VehicleMode, connect, LocationGlobalRelative
 from sensor_msgs.msg import NavSatFix
